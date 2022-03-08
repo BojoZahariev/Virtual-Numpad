@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Javascript Numpad</title>
+
+  <!-- (A) LOAD JS + CSS -->
+  <!--
+    <link rel="stylesheet" href="numpad-light.css"/>
+    -->
+  <link rel="stylesheet" href="numpad-light.css" />
+  <script src="numpad.js"></script>
+</head>
+
+<body>
+  <!-- (B) INPUT FIELDS -->
+  Field A: <input type="text" id="demoA" readonly />
+  <!-- <button id="loadBtn">LOAD</button> -->
+
+  <!-- (C) ATTACH NUMPAD -->
+  <script>
+    window.addEventListener("load", () => {
+      // (C1) BASIC NUMPAD
+      // numpad.attach({ target: document.getElementById("demoA") });
+      // numpad.attach({ target: document.getElementById("loadBtn") });
+
+      // (C2) WITH ALL POSSIBLE OPTIONS
+      numpad.attach({
+        target: document.getElementById("demoA"),
+        max: 4,
+        decimal: false,
+
+      });
+
+
+      // numpad.attach({
+      //   target: document.getElementById("loadBtn"),
+      //   max: 10,
+      //   decimal: false,
+
+      // });
+    });
+  </script>
+</body>
+
+</html>
