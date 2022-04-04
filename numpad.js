@@ -1,3 +1,5 @@
+"use strict";
+
 var numpad = {
   //CREATE NUMPAD HTML
   hwrap: null, // numpad wrapper container
@@ -29,8 +31,8 @@ var numpad = {
     numpad.hpad.appendChild(numpad.hbwrap);
 
     //BUTTONS
-    let buttonator = (txt, css, fn) => {
-      let button = document.createElement("div");
+    function buttonator(txt, css, fn) {
+      var button = document.createElement("div");
       button.innerHTML = txt;
       button.classList.add(css);
       button.onclick = fn;
@@ -39,22 +41,56 @@ var numpad = {
     };
 
     // 7 TO 9
-    for (let i = 7; i <= 9; i++) { buttonator(i, "num", () => { numpad.digit(i); }); }
+    var _loop = function _loop(i) {
+      buttonator(i, "num", function () {
+        numpad.digit(i);
+      });
+    };
+
+    for (var i = 7; i <= 9; i++) {
+      _loop(i);
+    }
+
     // BACKSPACE
     buttonator("&#10502;", "del", numpad.delete);
+
     // 4 TO 6
-    for (let i = 4; i <= 6; i++) { buttonator(i, "num", () => { numpad.digit(i); }); }
+    var _loop2 = function _loop2(_i) {
+      buttonator(_i, "num", function () {
+        numpad.digit(_i);
+      });
+    };
+
+    for (var _i = 4; _i <= 6; _i++) {
+      _loop2(_i);
+    }
+
     // CLEAR
     buttonator("C", "clr", numpad.reset);
+
+
     // 1 to 3
-    for (let i = 1; i <= 3; i++) { buttonator(i, "num", () => { numpad.digit(i); }); }
+    var _loop3 = function _loop3(_i2) {
+      buttonator(_i2, "num", function () {
+        numpad.digit(_i2);
+      });
+    };
+
+    for (var _i2 = 1; _i2 <= 3; _i2++) {
+      _loop3(_i2);
+    }
+
     // CANCEL
-    buttonator("&#10006;", "cx", () => { numpad.hide(1); });
+    buttonator("X", "cx", function () {
+      numpad.hide(1);
+    });
     // 0
-    buttonator(0, "zero", () => { numpad.digit(0); });
+    buttonator(0, "zero", function () {
+      numpad.digit(0);
+    });
 
     // OK
-    buttonator("&#10004;", "ok", numpad.select);
+    buttonator("Done", "ok", numpad.select);
 
     //ATTACH NUMPAD TO HTML BODY
     document.body.appendChild(numpad.hwrap);
@@ -66,8 +102,8 @@ var numpad = {
   nowMax: 0, // Current max allowed digits
 
   //NUMBER (0 TO 9)
-  digit: (num) => {
-    let current = numpad.hdisplay.value;
+  digit: function (num) {
+    var current = numpad.hdisplay.value;
     if (current.length < numpad.nowMax) {
       if (current == "0") { numpad.hdisplay.value = num; }
       else { numpad.hdisplay.value += num; }
@@ -75,24 +111,34 @@ var numpad = {
   },
 
   //BACKSPACE
-  delete: () => {
+  delete: function () {
     var length = numpad.hdisplay.value.length;
     if (length == 1) { numpad.hdisplay.value = 0; }
     else { numpad.hdisplay.value = numpad.hdisplay.value.substring(0, length - 1); }
   },
 
   //CLEAR ALL
-  reset: () => { numpad.hdisplay.value = "0"; },
+  reset: function () {
+    numpad.hdisplay.value = "0";
+  },
 
   //OK - SET VALUE
-  select: () => {
+  select: function () {
     numpad.nowTarget.value = numpad.hdisplay.value;
     numpad.hide();
-    numpad.nowTarget.dispatchEvent(new Event("numpadok"));
+
+    var event;
+    if (typeof (Event) === 'function') {
+      event = new Event('submit');
+    } else {
+      event = document.createEvent('Event');
+      event.initEvent('submit', true, true);
+    }
+    // numpad.nowTarget.dispatchEvent(new Event("numpadok"));
   },
 
   //ATTACH NUMPAD TO INPUT FIELD
-  attach: (opt) => {
+  attach: function (opt) {
     // OPTIONS
     //  target: required, target field.
     //  max: optional, maximum number of characters. Default 255.
@@ -107,7 +153,9 @@ var numpad = {
     opt.target.readOnly = true; // PREVENT ONSCREEN KEYBOARD
     opt.target.dataset.max = opt.max;
 
-    opt.target.addEventListener("click", () => { numpad.show(opt.target); });
+    opt.target.addEventListener("click", function () {
+      numpad.show(opt.target);
+    });
 
     //ATTACH CUSTOM LISTENERS
     if (opt.onselect) {
@@ -119,9 +167,9 @@ var numpad = {
   },
 
   //SHOW NUMPAD
-  show: (target) => {
+  show: function (target) {
     //SET CURRENT DISPLAY VALUE
-    let cv = target.value;
+    var cv = target.value;
     if (cv == "") { cv = "0"; }
     numpad.hdisplay.value = cv;
 
@@ -136,9 +184,29 @@ var numpad = {
   },
 
   //HIDE NUMPAD
-  hide: (manual) => {
-    if (manual) { numpad.nowTarget.dispatchEvent(new Event("numpadcx")); }
+  hide: function (manual) {
+    if (manual) {
+      var event;
+      if (typeof (Event) === 'function') {
+        event = new Event('submit');
+      } else {
+        event = document.createEvent('Event');
+        event.initEvent('submit', true, true);
+      }
+
+      // numpad.nowTarget.dispatchEvent(new Event("numpadcx"));
+    }
     numpad.hwrap.classList.remove("open");
   }
 };
 window.addEventListener("DOMContentLoaded", numpad.init);
+
+
+
+
+
+
+
+
+
+

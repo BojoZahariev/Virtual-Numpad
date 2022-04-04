@@ -1,11 +1,11 @@
-/* (A) WRAPPER */
+/*WRAPPER */
 #numWrap {
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.7);
   position: fixed;
   top: 0; left: 0;
-  z-index: 999;
+  z-index: 999999;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.2s;
@@ -13,9 +13,10 @@
 #numWrap.open {
   opacity: 1;
   visibility: visible;
+  z-index: 999999;
 }
 
-/* (B) NUMPAD */
+/*NUMPAD */
 #numPad {
   max-width: 350px;
   background: #eaeaea;
@@ -24,7 +25,7 @@
   padding: 10px;
 }
 
-/* (C) DISPLAY */
+/*DISPLAY */
 #numDisplay {
   box-sizing: border-box;
   width: 100%;
@@ -40,35 +41,69 @@
 #numDisplay:focus { outline: none; }
 #numDisplay::selection { background: none; }
 
-/* (D) BUTTONS WRAPPER */
+/*BUTTONS WRAPPER */
 #numBWrap {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  grid-gap: 5px;
+  text-align: center;
 }
 
-/* (E) BUTTONS */
+/*BUTTONS */
 #numBWrap div {
+  box-sizing: border-box;
+  display: inline-block;
   font-size: 24px;
   color: #000;
   text-align: center;
-  padding: 15px 0;
+  padding: 20px;
   border: 1px solid #c1c1c1;
+  text-align: center;
+  width: 74px;
+  height: 74px;
+  margin:4px;
+
+
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
-#numBWrap div:hover { cursor: pointer; }
+#numBWrap div:hover { 
+  cursor: pointer; 
+}
+
+#numBWrap div:active { 
+  background: #222; 
+}
+
+
 #numBWrap .num, #numBWrap .zero, #numBWrap .dot {
    background: #fff; 
 }
-#numBWrap .zero { 
-  /* grid-column: span 2;  */
-}
+
 #numBWrap .del, #numBWrap .clr { background: #ffecd7; }
 #numBWrap .cx { background: #ffdada; }
 #numBWrap .ok { 
   background: #e7f3ff;
-  grid-column: span 3; 
+  width: 240px;
 }
 
-/* No decimal points allowed */
-#numBWrap.noDec .dot { display: none; }
-#numBWrap.noDec .zero { grid-column: span 3; }
+
+
+
+
+
+@font-face {
+  font-family: 'password';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://jsbin-user-assets.s3.amazonaws.com/rafaelcastrocouto/password.ttf);
+}
+
+input.securityKeyHidden {
+  font-family: 'password';
+  width: 100px; height: 16px;  
+}
+
+
