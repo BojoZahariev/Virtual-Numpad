@@ -16,8 +16,9 @@
 <body>
   <!--INPUT FIELDS -->
   Field A: <input type="text" id="demoA" readonly value="" />
-  <!-- <button id="loadBtn">LOAD</button> -->
+  <button id="loadBtn">LOAD</button>
   <p>Password: <input class="securityKeyHidden" type="text" autocomplete="off" id="demoB" /></p>
+  <p>Password2: <input class="securityKeyHidden" type="text" autocomplete="off" id="demoC" /></p>
 
 
 
@@ -26,6 +27,11 @@
     window.addEventListener("load", function () {
       numpad.attach({
         target: document.getElementById("demoB"),
+        max: 4,
+      });
+
+      numpad.attach({
+        target: document.getElementById("demoC"),
         max: 4,
       });
 
