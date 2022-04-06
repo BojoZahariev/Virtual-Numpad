@@ -134,7 +134,6 @@ var numpad = {
       event = document.createEvent('Event');
       event.initEvent('submit', true, true);
     }
-    // numpad.nowTarget.dispatchEvent(new Event("numpadok"));
   },
 
   //ATTACH NUMPAD TO INPUT FIELD
@@ -193,8 +192,6 @@ var numpad = {
         event = document.createEvent('Event');
         event.initEvent('submit', true, true);
       }
-
-      // numpad.nowTarget.dispatchEvent(new Event("numpadcx"));
     }
     numpad.hwrap.classList.remove("open");
   }

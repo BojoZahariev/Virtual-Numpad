@@ -90,21 +90,16 @@
 }
 
 
-
-
-
-
 @font-face {
   font-family: 'password';
   font-style: normal;
   font-weight: 400;
   /* src: url(https://jsbin-user-assets.s3.amazonaws.com/rafaelcastrocouto/password.ttf); */
-  src: url(password.ttf);
+  src: url(/password.ttf);
 }
 
 input.securityKeyHidden {
   font-family: 'password';
-  width: 100px; height: 16px;  
 }
 
 
