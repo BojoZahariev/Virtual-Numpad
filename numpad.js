@@ -20,9 +20,9 @@ var numpad = {
     //DISPLAY
     numpad.hdisplay = document.createElement("input");
     numpad.hdisplay.id = "numDisplay";
-    numpad.hdisplay.type = "text";
+    numpad.hdisplay.type = "password";
     numpad.hdisplay.disabled = true;
-    numpad.hdisplay.value = "0";
+    numpad.hdisplay.value = "";
     numpad.hpad.appendChild(numpad.hdisplay);
 
     //NUMBER BUTTONS
@@ -113,13 +113,13 @@ var numpad = {
   //BACKSPACE
   delete: function () {
     var length = numpad.hdisplay.value.length;
-    if (length == 1) { numpad.hdisplay.value = 0; }
+    if (length == 1) { numpad.hdisplay.value = ''; }
     else { numpad.hdisplay.value = numpad.hdisplay.value.substring(0, length - 1); }
   },
 
   //CLEAR ALL
   reset: function () {
-    numpad.hdisplay.value = "0";
+    numpad.hdisplay.value = "";
   },
 
   //OK - SET VALUE
@@ -169,7 +169,7 @@ var numpad = {
   show: function (target) {
     //SET CURRENT DISPLAY VALUE
     var cv = target.value;
-    if (cv == "") { cv = "0"; }
+    if (cv == "") { cv = ""; }
     numpad.hdisplay.value = cv;
 
     //SET MAX ALLOWED CHARACTERS
