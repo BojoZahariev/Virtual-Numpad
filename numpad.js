@@ -105,7 +105,8 @@ var numpad = {
   digit: function (num) {
     var current = numpad.hdisplay.value;
     if (current.length < numpad.nowMax) {
-      if (current == "0") { numpad.hdisplay.value = num; }
+      // if (current == "0") { numpad.hdisplay.value = num; }
+      if (!current.length) { numpad.hdisplay.value = num; }
       else { numpad.hdisplay.value += num; }
     }
   },
